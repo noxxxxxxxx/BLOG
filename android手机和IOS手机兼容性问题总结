@@ -1,0 +1,62 @@
+1. 使用iscroll插件显示图片之后，  在IOS端预览图片会部分图片首次显示不出来
+   问题现象：
+       使用iscrool的插件显示图片，但是在IOS部分平台上面会出现初次显示不了图片，需要手动点击一下图片才可以显示，而且此问题是在部分图片上才会出现
+   解决方式：
+       将该图片外层的display:-webkit-box;既可。具体这样做的原因未知。
+    
+2. 单行显示：保留格式，同时有省略号码：
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;  
+    white-space: pre;    
+   
+3. 部分android机型问题 window.location.replace（）问题
+   问题现象：
+       window.location.replace函数，当第二个参数存在时，在部分android机型会出现replace失效问题，但仅仅第一次失效，刷新后又回有效，
+   解决办法：
+       针对此部分问题，在replace前面调用一次history.replaceState（）即可实现修改最近一次历史记录的URL。   
+   补充：
+       最近发现history.replaceState 在部分手机存在JS报错的情况，所以最好不要使用，或者使用的时候加一个try...catch...
+      
+4. 部分android机型存在显示图片模糊的问题
+   查询发现可以对图片的的父级DIV设置-webkit-perspective：10保证图片清晰。
+    
+5. android机型出现大块黑色阴影的问题
+　    很多人觉得，移动开发可以放心opacity了，但是值得注意的是，有时候在有些机器上（android）,图片opacity会造成大块的黑色阴影块，
+　 第一次碰到的时候直接麻爪了，后来发现是opacity搞的鬼，换成rgba就可以解决。
+　　
+6. IOS滑动过程中删除position的fixed属性时出现延迟显示的问题;
+   移动端移动事件包括两个，一个是scroll，一个是touchmove，他们的使用方式分别为：
+        scroll是在手指放开之后才会触发，但是部分机型不是，比如说Android版本原生浏览器，滑动过程中就生效(例如红米NOTE)
+        touchmove是手指按住的过程中不断触发，IOS版本微信，原生浏览器都是，但是部分android版本微信是滑动过程中只会触发一次到两次（例如红米1S）
+    IOS版本吧中，去掉DOM的position:fixed属性时，出现松开手指后该样式改变才生效的问题，可以针对IOS单独处理，处理方式是对该DOM使用
+    position:sticky属性，此属性只有IOS7.1版本上面有效，其他平台均无效，具体使用方式可以查看本仓库的另外一个库ios-fixed-problem的代码
+        
+7. 部分情况下出现设置margin-bottom：50px无效的情况
+   问题原因：
+       设置当前对象为positon: absolute，并且高度为100%会产生此问题
+   解决办法：
+       此时应该设置padding-bottom:50px;
+       
+8. IOS平台new Date()失败的问题
+   问题现象：
+       IOS平台中new Date(str)中，str="2010-10-27" 时，会出现Date()失败的情况
+    解决办法：
+       必须将str修改为"2010/10/27"才可以继续使用
+       
+9. parseInt()失效的问题
+      此函数在华为P7的版本下面会出现解析08,09这两个数字错误的问题。这两个数字都解析成了0,此时需要给parseInt的后面参数为实际的换算进制,即调用
+   为parseInt(param, 10);
+      
+10. 获取手机的宽度和高度
+    问题现象：
+        获取手机的宽度和高度不能使用$(window).width()、$(window).height()或者window.screen.width、window.screen.height,因为这些高度和宽度在一些android手机上获取的
+    值是正常值的两倍
+    解决办法：
+        可以采用先建一个DIV，然后获取他的高度的方法来解决此问题，具体代码见本仓库公共JS封装文件GCommon.js文件
+        
+        
+      
+      
+      
