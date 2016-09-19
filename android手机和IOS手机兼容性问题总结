@@ -31,7 +31,7 @@
         scroll是在手指放开之后才会触发，但是部分机型不是，比如说Android版本原生浏览器，滑动过程中就生效(例如红米NOTE)
         touchmove是手指按住的过程中不断触发，IOS版本微信，原生浏览器都是，但是部分android版本微信是滑动过程中只会触发一次到两次（例如红米1S）
     IOS版本吧中，去掉DOM的position:fixed属性时，出现松开手指后该样式改变才生效的问题，可以针对IOS单独处理，处理方式是对该DOM使用
-    position:sticky属性，此属性只有IOS7.1版本上面有效，其他平台均无效，具体使用方式可以查看本仓库的另外一个库ios-fixed-problem的代码
+    position:sticky属性，此属性只有IOS7.1版本上面有效，其他平台均无效，具体使用方式可以查看本仓库的另外一个库iosFixedProblem的代码
         
 7. 部分情况下出现设置margin-bottom：50px无效的情况
    问题原因：
@@ -51,8 +51,8 @@
       
 10. 获取手机的宽度和高度
     问题现象：
-        获取手机的宽度和高度不能使用$(window).width()、$(window).height()或者window.screen.width、window.screen.height,因为这些高度和宽度在一些android手机上获取的
-    值是正常值的两倍
+        获取手机的宽度和高度不能使用$(window).width()、$(window).height()或者window.screen.width、window.screen.height,因为这些高度和宽度在
+     一些android手机上获取的值是正常值的两倍
     解决办法：
         可以采用先建一个DIV，然后获取他的高度的方法来解决此问题，具体代码见本仓库公共JS封装文件GCommon.js文件
         
