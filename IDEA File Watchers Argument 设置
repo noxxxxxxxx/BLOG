@@ -1,0 +1,26 @@
+IDEA File Watchers 参数设置
+
+arguments设置：
+编译的参数设置如下，
+$FileDir$ --out-dir $FileParentDir$\dist  --source-maps --presets es2015
+说明：
+$FileDir$  当前文件所在目录
+--out-dir  设置输出的目录文件夹
+$FileParentDir$\dist  输出的文件夹（这里指当前文件的父级目录下面新建一个dist目录）
+--source-maps  生成压缩代码的选项
+--presets es2015  编辑当前JS文件为es2015
+
+Output paths to refresh参数：
+$FileNameWithoutAllExtensions$.js.map:$FileNameWithoutAllExtensions$.js
+$FileNameWithoutAllExtensions$.js  编译后输出的文件名称（目录在上面设置的目录文件名称那里）
+$FileNameWithoutAllExtensions$.js.map  编译后的压缩文件代码
+
+
+部分常用变量名称的说明：
+ContentRoot 当前项目所在绝对路径（）
+FileDir 当前文件所在绝对路径
+FileParentDir  当前文件所在文件目录的父级目录的绝对路径
+
+FileDirName 当前文件所在目录文件名称
+FileDirRelativeToProjectRoot  当前文件相对路径
+NoduleName  当前项目名称
